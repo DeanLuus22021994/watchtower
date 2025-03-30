@@ -1,0 +1,61 @@
+{
+    "categories": [
+        {
+            "title": "## 🚀 Features",
+            "labels": [
+                "feature",
+                "enhancement"
+            ]
+        },
+        {
+            "title": "## 🐛 Bug Fixes",
+            "labels": [
+                "fix",
+                "bug"
+            ]
+        },
+        {
+            "title": "## 📝 Documentation",
+            "labels": [
+                "documentation"
+            ]
+        },
+        {
+            "title": "## 🧪 Tests",
+            "labels": [
+                "test"
+            ]
+        },
+        {
+            "title": "## 🔧 Maintenance",
+            "labels": [
+                "chore",
+                "dependencies"
+            ]
+        },
+        {
+            "title": "## 🚨 Security",
+            "labels": [
+                "security"
+            ]
+        }
+    ],
+    "template": "${{CHANGELOG}}\n\n## 📦 Dependency Updates\n\n${{UNCATEGORIZED}}",
+    "pr_template": "- ${{TITLE}} (#${{NUMBER}})",
+    "empty_template": "- No changes in this release",
+    "label_extractor": [
+        {
+            "pattern": "(.) (.+)",
+            "target": "$1"
+        }
+    ],
+    "transformers": [
+        {
+            "pattern": "[Bb]ump (.*) from (.*) to (.*)",
+            "target": "⬆️ Upgrade $1 ($2 → $3)"
+        }
+    ],
+    "trim_values": true,
+    "max_pull_requests": 50,
+    "max_back_track_time_days": 90
+}

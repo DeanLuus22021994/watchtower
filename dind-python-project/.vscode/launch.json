@@ -1,91 +1,22 @@
+// Ensure all VS Code configurations align with container-only operations
+// Removed any configurations that could trigger external operations
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Flask",
+            "name": "Python: Attach",
             "type": "debugpy",
-            "request": "launch",
-            "module": "dind_python_project",
-            "args": [
-                "run-server",
-                "--debug"
-            ],
-            "jinja": true,
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "name": "Python: Process Data (GPU)",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "dind_python_project",
-            "args": [
-                "process-data",
-                "${input:inputFile}",
-                "${input:outputFile}",
-                "--gpu"
-            ],
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "name": "Python: Process Data (CPU)",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "dind_python_project",
-            "args": [
-                "process-data",
-                "${input:inputFile}",
-                "${input:outputFile}"
-            ],
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "name": "Python: Display Config",
-            "type": "debugpy",
-            "request": "launch",
-            "module": "dind_python_project",
-            "args": [
-                "config"
-            ],
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "name": "Python: Current File",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "name": "Python: Debug Tests",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${file}",
-            "purpose": [
-                "debug-test"
-            ],
-            "console": "integratedTerminal",
-            "justMyCode": false,
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ],
-    "inputs": [
-        {
-            "id": "inputFile",
-            "type": "promptString",
-            "description": "Input file path",
-            "default": "data/input.json"
-        },
-        {
-            "id": "outputFile",
-            "type": "promptString",
-            "description": "Output file path",
-            "default": "data/output.json"
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "/app"
+                }
+            ]
         }
     ]
 }

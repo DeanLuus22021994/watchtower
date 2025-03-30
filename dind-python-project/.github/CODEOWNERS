@@ -1,0 +1,23 @@
+# Default Owners
+
+* @yourusername
+
+## Python core files
+
+/src/dind_python_project/core/ @yourusername
+
+## API related files
+
+/src/dind_python_project/api/ @yourusername
+
+## Configuration files
+
+*.toml @yourusername
+*.yml @yourusername
+*.yaml @yourusername
+/.devcontainer/ @yourusername
+
+## Documentation
+
+/docs/ @yourusername
+*.md @yourusername

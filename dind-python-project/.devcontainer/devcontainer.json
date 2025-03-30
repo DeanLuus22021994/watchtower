@@ -31,7 +31,17 @@
                     "**/build/**": true
                 },
                 "telemetry.telemetryLevel": "off",
-                "workbench.enableExperiments": false
+                "workbench.enableExperiments": false,
+                "github.copilot.enable": {
+                    "*": true,
+                    "plaintext": true,
+                    "markdown": true,
+                    "yaml": true
+                },
+                "github.copilot.advanced": {
+                    "length": 1000,
+                    "temperature": 0.7
+                }
             },
             "extensions": [
                 "ms-python.python",
@@ -45,13 +55,20 @@
                 "ms-azuretools.vscode-docker",
                 "eamodio.gitlens",
                 "EditorConfig.EditorConfig",
-                "streetsidesoftware.code-spell-checker"
+                "streetsidesoftware.code-spell-checker",
+                "tamasfe.even-better-toml",
+                "redhat.vscode-yaml",
+                "ms-python.debugpy"
             ]
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/git:1": {},
-        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "latest"
+        },
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "version": "latest",
             "moby": true,
@@ -74,7 +91,9 @@
         "ghcr.io/devcontainers/features/node:1": {
             "version": "lts"
         },
-        "ghcr.io/devcontainers-contrib/features/act:1": {}
+        "ghcr.io/devcontainers-contrib/features/act:1": {
+            "version": "latest"
+        }
     },
     "remoteUser": "vscode",
     "remoteEnv": {

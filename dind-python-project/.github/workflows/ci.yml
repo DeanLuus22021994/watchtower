@@ -68,7 +68,9 @@ jobs:
       with:
         file: ./coverage.xml
         fail_ci_if_error: false
+        # Only use token if available (optional for public repos)
         token: ${{ secrets.CODECOV_TOKEN }}
+        # Ensure the CODECOV_TOKEN secret is properly configured in the repository settings.
 
   build:
     needs: test

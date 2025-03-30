@@ -1,29 +1,28 @@
 # Docker-in-Docker Python Project
 
-A high-performance Python development environment with VS Code optimizations, GitHub Actions Runner, and NVIDIA GPU support.
+A high-performance Python development environment with VS Code optimizations, GitHub Actions Runner within the container, and GPU pass through devcontainer feature.
 
 ## Features
 
 - Optimized VS Code development container setup
-- NVIDIA CUDA GPU passthrough for accelerated computing
-- GitHub Actions Runner for local CI/CD testing
-- Modern Python project structure and tooling
-- Clean architecture with modular design
-- Comprehensive test suite
-- Centralized configuration using `.env` file
+- NVIDIA CUDA GPU pass through devcontainer feature for accelerated computing
+- GitHub Actions Runner within the container for local CI/CD testing
+- Modern Python Slim base image project with well-defined structure and tooling
+- Clean layered architecture with modular design
+- Comprehensive test suite within the container run with act devcontainer feature
+- Centralized configuration using `.env` file strictly within the container
 
 ## Quick Start
 
 1. **Prerequisites**
    - VS Code with Remote Development extension
-   - Docker Desktop with NVIDIA Container Toolkit (for GPU support)
-   - Git
+   - Docker Desktop and host-installed software and drivers (for GPU passthrough support)
 
 2. **Setup**
 
    ```bash
    # Clone the repository
-   git clone https://github.com/yourusername/dind-python-project.git
+   git clone git@github.com:ZaTrust/dind-python-project.git
    cd dind-python-project
    
    # Copy the environment template and update values
@@ -63,30 +62,31 @@ A high-performance Python development environment with VS Code optimizations, Gi
    - Click "Reopen in Container" to build and start the development environment
    - The container setup process will handle all dependencies automatically
    - The `.env` file will be loaded automatically in the container
+   - **Important**: All operations, including caching and implementation, are strictly confined to the container. No external triggers or dependencies are allowed, except for leveraging host-installed software and drivers to ensure a minimal, slim, and low-footprint setup.
 
 5. **Running GitHub Actions Locally**
 
    ```bash
-   # Set up GitHub runner (only needed once)
+   # Set up GitHub runner (only needed once, strictly within the container)
    ~/setup-github-runner.sh
    
-   # Run a GitHub workflow locally using act
+   # Run a GitHub workflow locally using act (strictly within the container)
    act -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest
    ```
 
 6. **Running the Application**
 
    ```bash
-   # Run the web server
+   # Run the web server (strictly within the container)
    python -m dind_python_project run-server
    
-   # Process data with CPU
+   # Process data with CPU (strictly within the container)
    python -m dind_python_project process-data input.json output.json
    
-   # Process data with GPU (if available)
+   # Process data with GPU (if available, strictly within the container)
    python -m dind_python_project process-data input.json output.json --gpu
    
-   # Display current configuration from .env file
+   # Display current configuration from .env file (strictly within the container)
    python -m dind_python_project config
    ```
 
@@ -106,7 +106,7 @@ The development container automatically configures NVIDIA GPU passthrough if ava
 pip install -e ".[cuda]"
 ```
 
-Then use the `--gpu` flag with the CLI commands or set `USE_GPU=true` in your `.env` file.
+Then use the `--gpu` flag with the CLI commands or set `USE_GPU=true` in your `.env` file. All GPU operations are strictly confined to the container.
 
 ## Using .env for Configuration
 
@@ -124,3 +124,5 @@ python -m dind_python_project config
 2. Environment variables set in the shell
 3. Variables in the `.env` file
 4. Default values in the code (lowest priority)
+
+**Note**: All configuration and operations must remain strictly within the container to ensure a minimal, slim, and low-footprint setup.

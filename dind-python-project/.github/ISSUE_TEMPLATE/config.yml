@@ -1,0 +1,20 @@
+description: "Configuration for GitHub issue templates"
+name: "Issue Template Configuration"
+body:
+  - type: markdown
+    attributes:
+      value: "Please select the type of issue you want to create."
+  - type: dropdown
+    attributes:
+      label: "Issue Type"
+      options:
+        - label: "Bug Report"
+          value: "bug"
+        - label: "Feature Request"
+          value: "enhancement"
+        - label: "Documentation"
+          value: "documentation"
+labels:
+  - "bug"
+  - "enhancement"
+  - "documentation"
