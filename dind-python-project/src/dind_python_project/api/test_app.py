@@ -1,14 +1,27 @@
 """Tests for the Flask API application."""
 
 import json
+import os
 from pathlib import Path
 from typing import Dict, Any
+from unittest.mock import patch
 
 import pytest
 from flask.testing import FlaskClient
 
 from dind_python_project.api.app import create_app
 from dind_python_project.config import AppConfig
+
+
+@pytest.fixture
+def mock_env_file(monkeypatch):
+    """Create a mock environment with test values."""
+    monkeypatch.setenv("DEBUG", "True")
+    monkeypatch.setenv("ENV", "testing")
+    monkeypatch.setenv("LOG_LEVEL", "DEBUG")
+    monkeypatch.setenv("USE_GPU", "False")
+    monkeypatch.setenv("VERSION", "0.1.0-test")
+    monkeypatch.setenv("PROJECT_NAME", "dind-python-project-test")
 
 
 class TestAPI:
@@ -63,12 +76,22 @@ class TestAPI:
         assert "backend" in data
         assert "summary" in data
 
-    def test_app_configuration(self) -> None:
-        """Test application configuration."""
-        config = AppConfig(debug=True, env="testing", log_level="DEBUG", use_gpu=True)
+    def test_app_configuration_from_env(self, mock_env_file) -> None:
+        """Test application configuration from environment variables."""
+        config = AppConfig.from_env()
+        
+        assert config.debug is True
+        assert config.env == "testing"
+        assert config.log_level == "DEBUG"
+        assert config.use_gpu is False
+        assert config.version == "0.1.0-test"
+        assert config.project_name == "dind-python-project-test"
+        
         app = create_app(config)
         
         assert app.config["debug"] is True
         assert app.config["env"] == "testing"
         assert app.config["log_level"] == "DEBUG"
-        assert app.config["use_gpu"] is True
+        assert app.config["use_gpu"] is False
+        assert app.config["version"] == "0.1.0-test"
+        assert app.config["project_name"] == "dind-python-project-test"

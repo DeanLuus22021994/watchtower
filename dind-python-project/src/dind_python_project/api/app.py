@@ -1,6 +1,7 @@
 """Web API module for Flask application."""
 
 import logging
+import os
 from typing import Any, Dict, Optional
 
 from flask import Flask, jsonify, request
@@ -51,7 +52,11 @@ def register_routes(app: Flask) -> None:
     @app.route("/health")
     def health_check() -> Dict[str, Any]:
         """Health check endpoint."""
-        return jsonify({"status": "healthy", "version": app.config.get("VERSION", "0.1.0")})
+        return jsonify({
+            "status": "healthy", 
+            "version": app.config.get("version", "0.1.0"),
+            "project": app.config.get("project_name", "dind-python-project")
+        })
     
     # API endpoints
     @app.route("/api/v1/process", methods=["POST"])

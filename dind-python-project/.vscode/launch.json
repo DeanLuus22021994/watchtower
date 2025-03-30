@@ -12,10 +12,7 @@
             ],
             "jinja": true,
             "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}",
-                "USE_GPU": "true"
-            }
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Python: Process Data (GPU)",
@@ -29,9 +26,7 @@
                 "--gpu"
             ],
             "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Python: Process Data (CPU)",
@@ -44,9 +39,18 @@
                 "${input:outputFile}"
             ],
             "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "Python: Display Config",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "dind_python_project",
+            "args": [
+                "config"
+            ],
+            "justMyCode": false,
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Python: Current File",
@@ -55,21 +59,19 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "name": "Python: Debug Tests",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "purpose": ["debug-test"],
+            "purpose": [
+                "debug-test"
+            ],
             "console": "integratedTerminal",
             "justMyCode": false,
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
+            "envFile": "${workspaceFolder}/.env"
         }
     ],
     "inputs": [

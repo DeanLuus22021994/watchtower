@@ -10,10 +10,12 @@ services:
       - ~/.gitconfig:/home/vscode/.gitconfig:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - github-runner-data:/home/vscode/actions-runner:cached
+    env_file:
+      - ../.env
     environment:
       - PYTHONPATH=/app
       - PYTHONUNBUFFERED=1
-      # GitHub Actions runner env vars
+      # Add these environment variables if they're not in .env file
       - GITHUB_PERSONAL_TOKEN=${GITHUB_PERSONAL_TOKEN}
       - GITHUB_REPOSITORY=${GITHUB_REPOSITORY}
       # NVIDIA settings

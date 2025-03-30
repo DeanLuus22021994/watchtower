@@ -1,17 +1,23 @@
 #!/bin/bash
 set -e
 
+# Load environment variables from .env file if it exists
+if [ -f "/app/.env" ]; then
+    echo "Loading environment variables from .env file"
+    export $(grep -v '^#' /app/.env | xargs)
+fi
+
 # Function to check for GitHub token and repository from env vars
 function check_env_vars() {
     if [ -z "$GITHUB_PERSONAL_TOKEN" ]; then
         echo "Error: GITHUB_PERSONAL_TOKEN environment variable is not set."
-        echo "You can set it in the Terminal with: export GITHUB_PERSONAL_TOKEN=your_token"
+        echo "Please add it to your .env file or set it in the Terminal with: export GITHUB_PERSONAL_TOKEN=your_token"
         exit 1
     fi
 
     if [ -z "$GITHUB_REPOSITORY" ]; then
         echo "Error: GITHUB_REPOSITORY environment variable is not set."
-        echo "You can set it in the Terminal with: export GITHUB_REPOSITORY=owner/repo"
+        echo "Please add it to your .env file or set it in the Terminal with: export GITHUB_REPOSITORY=owner/repo"
         exit 1
     fi
 }
