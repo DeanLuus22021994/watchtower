@@ -1,0 +1,85 @@
+{
+    "name": "Python Development Environment",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "always"
+                },
+                "python.formatting.provider": "black",
+                "python.linting.enabled": true,
+                "python.linting.flake8Enabled": true,
+                "python.linting.mypyEnabled": true,
+                "python.testing.pytestEnabled": true,
+                "remote.defaultExtensionsIfInstalledLocally": [
+                    "GitHub.copilot",
+                    "GitHub.copilot-chat",
+                    "GitHub.vscode-pull-request-github"
+                ],
+                "editor.maxTokenizationLineLength": 10000,
+                "files.watcherExclude": {
+                    "**/.git/objects/**": true,
+                    "**/.git/subtree-cache/**": true,
+                    "**/node_modules/**": true,
+                    "**/venv/**": true,
+                    "**/__pycache__/**": true,
+                    "**/dist/**": true,
+                    "**/build/**": true
+                },
+                "telemetry.telemetryLevel": "off",
+                "workbench.enableExperiments": false
+            },
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.black-formatter",
+                "ms-python.flake8",
+                "ms-python.mypy-type-checker",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitHub.vscode-pull-request-github",
+                "ms-azuretools.vscode-docker",
+                "eamodio.gitlens",
+                "EditorConfig.EditorConfig",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "moby": true,
+            "dockerDashComposeVersion": "v2"
+        },
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "latest",
+            "installTools": true
+        },
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true
+        },
+        "ghcr.io/devcontainers/features/nvidia-cuda:1": {
+            "installCudnn": true,
+            "cudaVersion": "latest",
+            "cudnnVersion": "latest"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts"
+        },
+        "ghcr.io/devcontainers-contrib/features/act:1": {}
+    },
+    "remoteUser": "vscode",
+    "remoteEnv": {
+        "PYTHONPATH": "${containerWorkspaceFolder}",
+        "PYTHONUNBUFFERED": "1"
+    },
+    "postCreateCommand": "pip install --upgrade pip && pip install -e '.[dev]' && pre-commit install"
+}
