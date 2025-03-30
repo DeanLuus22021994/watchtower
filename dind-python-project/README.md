@@ -19,6 +19,7 @@ A high-performance Python development environment with VS Code optimizations, Gi
    - Git
 
 2. **Setup**
+
    ```bash
    # Clone the repository
    git clone https://github.com/yourusername/dind-python-project.git
@@ -38,6 +39,7 @@ A high-performance Python development environment with VS Code optimizations, Gi
    - The container setup process will handle all dependencies automatically
 
 4. **Running GitHub Actions Locally**
+
    ```bash
    # Set up GitHub runner (only needed once)
    ~/setup-github-runner.sh
@@ -47,6 +49,7 @@ A high-performance Python development environment with VS Code optimizations, Gi
    ```
 
 5. **Running the Application**
+
    ```bash
    # Run the web server
    python -m dind_python_project run-server
@@ -57,26 +60,6 @@ A high-performance Python development environment with VS Code optimizations, Gi
    # Process data with GPU (if available)
    python -m dind_python_project process-data input.json output.json --gpu
    ```
-
-## Project Structure
-
-```
-.
-├── .devcontainer/            # VS Code development container configuration
-├── .github/                  # GitHub Actions workflows
-├── src/                      # Source code
-│   └── dind_python_project/  # Main package
-│       ├── api/              # Web API components
-│       ├── core/             # Core business logic
-│       ├── cli.py            # Command-line interface
-│       └── config.py         # Configuration handling
-├── tests/                    # Test suite
-│   ├── api/                  # API tests
-│   └── core/                 # Core logic tests
-├── .pre-commit-config.yaml   # Pre-commit hooks configuration
-├── pyproject.toml            # Project metadata and dependencies
-└── README.md                 # This file
-```
 
 ## Development Tools
 
